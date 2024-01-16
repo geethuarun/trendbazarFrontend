@@ -10,10 +10,10 @@
                 <li><a href="">Products</a></li>
                 <li><a href="">About</a></li>
                 <li><a href="">Contact</a></li>
-                <li><a href="">Account</a></li>
+                <li><button class="btn" (click)="signOut()">Logout</button></li>
             </ul>
         </nav>
-        <a href="" routerLink="carts"><img src="../../assets/images/cart.png" width="30px" height="30px"></a>
+        <a href="" routerLink="carts"><img src="../../assets/images/cart.png" width="30px" height="30px">{{carItemCount}}</a>
         <img src="../../assets/images/menu.png" class="menu-icon" onclick="">
     </div>
 </div>

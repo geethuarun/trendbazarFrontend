@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient,HttpHeaders} from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable,tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreService {
+  isAuthenticated=new BehaviorSubject<boolean>(false)
 
   constructor(private http:HttpClient) { 
 
@@ -16,7 +17,7 @@ export class StoreService {
 
   }
   getToken(data:any){
-    return this.http.post("http://127.0.0.1:8000/api/token/",data)
+    return this.http.post("http://127.0.0.1:8000/api/token/",data).pipe(tap(data=>this.isLoggedIn()))
 
   }
   getProducts(){
@@ -76,5 +77,8 @@ cartList(){
     return new Observable()
   }
 
+}
+isLoggedIn(){
+  this.isAuthenticated.next("token" in localStorage?true:false)
 }
 }
